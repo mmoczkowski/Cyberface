@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mmoczkowski.cyberface">
+
+  <uses-feature android:name="android.hardware.type.watch" />
+
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="com.google.android.wearable.permission.RECEIVE_COMPLICATION_DATA" />
+
+  <application
+      android:allowBackup="true"
+      android:icon="@drawable/preview"
+      android:label="@string/app_name"
+      android:supportsRtl="true"
+      android:theme="@android:style/Theme.DeviceDefault">
+
+    <meta-data
+        android:name="com.google.android.wearable.standalone"
+        android:value="true" />
+
+    <service
+        android:name=".CyberWatchFaceService"
+        android:label="@string/app_name"
+        android:exported="true"
+        android:permission="android.permission.BIND_WALLPAPER">
+
+      <intent-filter>
+        <action android:name="android.service.wallpaper.WallpaperService" />
+
+        <category android:name="com.google.android.wearable.watchface.category.WATCH_FACE" />
+      </intent-filter>
+
+      <meta-data
+          android:name="android.service.wallpaper"
+          android:resource="@xml/watch_face" />
+      <meta-data
+          android:name="com.google.android.wearable.watchface.preview"
+          android:resource="@drawable/preview" />
+      <meta-data
+          android:name="com.google.android.wearable.watchface.preview_circular"
+          android:resource="@drawable/preview" />
+      <meta-data
+          android:name="android.service.wallpaper.square_mode"
+          android:value="false" />
+    </service>
+  </application>
+</manifest>
